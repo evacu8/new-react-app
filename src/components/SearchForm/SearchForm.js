@@ -4,9 +4,9 @@ import Button from '../Button/Button';
 
 const SearchForm = () => {
   return (
-    <form className={styles.SearchForm}>
+    <form className={styles.searchForm}>
       <TextInput placeholder="Search..." />
-      <Button text="Search"/>
+      <Button text="Search" />
     </form>
   );
 };
