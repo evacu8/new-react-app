@@ -1,7 +1,6 @@
 import styles from './List.module.scss';
 import Column from './../Column/Column';
 import ColumnForm from './../ColumnForm/ColumnForm';
-import CardForm from '../CardForm/CardForm';
 import { useState } from 'react';
 import shortid from 'shortid';
 
