@@ -3,11 +3,16 @@ import Card from '../Card/Card';
 import CardForm from '../CardForm/CardForm';
 import { useSelector } from 'react-redux';
 
-
 const Column = props => {
 
-  const cards = useSelector(state => state.cards.filter(card => card.columnId === props.id));
+  const strContains = (targetString, str) => targetString.toLowerCase().includes(str.toLowerCase());
+  
+  const searchString = useSelector(state => state.searchString.toString())
+  const cards = useSelector(state => 
 
+    state.cards.filter(card => (card.columnId === props.id && strContains(card.title, searchString)))
+  );
+  
   return (
   <article className={styles.column}>
     <h2 className={styles.title}>
