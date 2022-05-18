@@ -2,12 +2,11 @@ import styles from './List.module.scss';
 import { useSelector } from 'react-redux';
 import Column from './../Column/Column';
 import ColumnForm from './../ColumnForm/ColumnForm';
-import getAllColumns from './../redux/store';
+import { getAllColumns } from '../../redux/store';
 
 const List = () => {
   
   const columns = useSelector(getAllColumns);
-  
 
   return (
     <div className={styles.list}>
