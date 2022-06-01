@@ -8,6 +8,7 @@ import { strContains } from '../utils/strContains';
 export const getFilteredCards = ({ cards, searchString }, columnId) => cards
   .filter(card => card.columnId === columnId && strContains(card.title, searchString));
 export const getAllColumns = state => state.columns;
+export const getAllLists = state => state.lists;
 export const getListById = ({ lists }, listId) => lists.find(list => list.id === listId);
 export const getColumnsByList = ({ columns }, listId) => columns
   .filter(column => column.listId === listId);
