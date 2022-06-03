@@ -1,8 +1,11 @@
 /* eslint-disable no-unreachable */
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import initialState from './initialState';
-import shortid from 'shortid';
 import { strContains } from '../utils/strContains';
+import listsReducer from './listsRedux';
+import columnsReducer from './columnsRedux';
+import cardsReducer from './cardsRedux';
+import searchStringReducer from './searchStringRedux';
 
 //selectors
 export const getFilteredCards = ({ cards, searchString }, columnId) => cards
@@ -23,28 +26,15 @@ export const addList = payload => ({ type: 'ADD_LIST', payload });
 export const updateSearchstring = payload => ({ type: 'UPDATE_SEARCHSTRING', payload });
 export const toggleCardFavorite = payload => ({ type: 'TOGGLE_CARD_FAVORITE', payload });
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'ADD_COLUMN':
-      return { ...state, columns: [...state.columns, { ...action.payload, id: shortid() }]};
-      break;
-    case 'ADD_CARD':
-      return { ...state, cards: [...state.cards, { ...action.payload, id: shortid() }]};
-      break;
-    case 'ADD_LIST':
-      return { ...state, lists: [...state.lists, { ...action.payload, id: shortid() }]};
-      break;
-    case 'UPDATE_SEARCHSTRING':
-      return { ...state, searchString: action.payload };
-      break;
-    case 'TOGGLE_CARD_FAVORITE':
-      return { ...state, cards: state.cards.map(card => (card.id === action.payload) ? { ...card, isFavorite: !card.isFavorite } : card) }; 
-      break;
-    default:
-      return state;
-      break;
-  }
-};
+// reducer
+const subreducers = {
+  lists: listsReducer,
+  columns: columnsReducer,
+  cards: cardsReducer,
+  searchString: searchStringReducer
+}
+
+const reducer = combineReducers(subreducers);
 
 const store = createStore(
   reducer,
