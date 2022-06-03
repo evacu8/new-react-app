@@ -19,7 +19,7 @@ const Card = props => {
     <li className={styles.card}>
       {props.title}
       <button 
-      type='button'
+        type='button'
         className={clsx(styles.button, isFavorite && styles.favorite)} 
         onClick={handleClick}>
         <span className="fa fa-star-o" />
